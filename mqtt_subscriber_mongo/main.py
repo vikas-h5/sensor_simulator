@@ -4,7 +4,10 @@ from pymongo import MongoClient
 
 def on_message(client, userdata, msg):
     payload = json.loads(msg.payload)
-    # Save payload to MongoDB
+    # Parse and convert the timestamp to a date object
+    timestamp = datetime.fromisoformat(payload["timestamp"])
+    payload["timestamp"] = timestamp
+    # Insert the payload into MongoDB
     db_collection.insert_one(payload)
 
 client = mqtt.Client()
