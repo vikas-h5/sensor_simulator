@@ -21,7 +21,7 @@ async def get_sensor_readings(start: str, end: str):
     
     readings = db_collection.find({
         "timestamp": {"$gte": start_time, "$lte": end_time}
-    })
+    },{"_id":False})
     
     return list(readings)
 
