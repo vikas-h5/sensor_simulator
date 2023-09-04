@@ -25,7 +25,7 @@ The project's main goal is to simulate sensor data, publish it using MQTT, subsc
 
 The project directory structure is organized as follows:
 
-sensor_simulator/
+sensor_simulator/\n
 │
 ├── mqtt_broker/
 │   ├── Dockerfile
