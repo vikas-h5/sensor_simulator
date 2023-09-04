@@ -26,32 +26,32 @@ The project's main goal is to simulate sensor data, publish it using MQTT, subsc
 The project directory structure is organized as follows:
 
 sensor_simulator/\
-│
-├── mqtt_broker/
-│   ├── Dockerfile
-│   └── mosquitto.conf
-│
-├── mqtt_publisher/
-│   ├── Dockerfile
-│   ├── main.py
-│   └── requirements.txt
-│
-├── mqtt_subscriber_mongo/
-│   ├── Dockerfile
-│   ├── main.py
-│   └── requirements.txt
-│
-├── mqtt_subscriber_redis/
-│   ├── Dockerfile
-│   ├── main.py
-│   └── requirements.txt
-│
-├── fastapi_app/
-│   ├── Dockerfile
-│   ├── main.py
-│   └── requirements.txt
-│
-└── docker-compose.yml
+│\
+├── mqtt_broker/\
+│   ├── Dockerfile\
+│   └── mosquitto.conf\
+│\
+├── mqtt_publisher/\
+│   ├── Dockerfile\
+│   ├── main.py\
+│   └── requirements.txt\
+│\
+├── mqtt_subscriber_mongo/\
+│   ├── Dockerfile\
+│   ├── main.py\
+│   └── requirements.txt\
+│\
+├── mqtt_subscriber_redis/\
+│   ├── Dockerfile\
+│   ├── main.py\
+│   └── requirements.txt\
+│\
+├── fastapi_app/\
+│   ├── Dockerfile\
+│   ├── main.py\
+│   └── requirements.txt\
+│\
+└── docker-compose.yml\
 
 ## Getting Started
 
