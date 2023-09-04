@@ -1,46 +1,47 @@
-version: "3"
+version: "3"  # Specify the Docker Compose file format version
+
 services:
-  mqtt-broker:
+  mqtt-broker:  # Define a service named "mqtt-broker"
     build:
-      context: ./mqtt_broker
+      context: ./mqtt_broker  # Specify the build context for this service
     ports:
-      - "1883:1883"
+      - "1883:1883"  # Map port 1883 on the host to port 1883 in the container
 
-  mqtt-publisher:
+  mqtt-publisher:  # Define a service named "mqtt-publisher"
     build:
-      context: ./mqtt_publisher
+      context: ./mqtt_publisher  # Specify the build context for this service
 
-  mqtt-subscriber-mongo:
+  mqtt-subscriber-mongo:  # Define a service named "mqtt-subscriber-mongo"
     build:
-      context: ./mqtt_subscriber_mongo
+      context: ./mqtt_subscriber_mongo  # Specify the build context for this service
     depends_on:
-      - mqtt-broker
-      - mongo
+      - mqtt-broker  # Ensure that the "mqtt-broker" service is started before this one
+      - mongo  # Ensure that the "mongo" service is started before this one
 
-  mongo:
-    image: "mongo"
+  mongo:  # Define a service named "mongo" using the official MongoDB image
+    image: "mongo"  # Use the official MongoDB Docker image
     ports:
-      - "27017:27017"
+      - "27017:27017"  # Map port 27017 on the host to port 27017 in the container
     volumes:
-      - ./mongo-data:/data/db
+      - ./mongo-data:/data/db  # Mount a local directory for persistent data storage
 
-  mqtt-subscriber-redis:
+  mqtt-subscriber-redis:  # Define a service named "mqtt-subscriber-redis"
     build:
-      context: ./mqtt_subscriber_redis
+      context: ./mqtt_subscriber_redis  # Specify the build context for this service
     depends_on:
-      - mqtt-broker
-      - redis
+      - mqtt-broker  # Ensure that the "mqtt-broker" service is started before this one
+      - redis  # Ensure that the "redis" service is started before this one
 
-  redis:
-    image: "redis"
+  redis:  # Define a service named "redis" using the official Redis image
+    image: "redis"  # Use the official Redis Docker image
     ports:
-      - "6379:6379"
+      - "6379:6379"  # Map port 6379 on the host to port 6379 in the container
 
-  fastapi-app:
+  fastapi-app:  # Define a service named "fastapi-app"
     build:
-      context: ./fastapi_app
+      context: ./fastapi_app  # Specify the build context for this service
     depends_on:
-      - mqtt-subscriber-mongo
-      - mqtt-subscriber-redis
+      - mqtt-subscriber-mongo  # Ensure that the "mqtt-subscriber-mongo" service is started before this one
+      - mqtt-subscriber-redis  # Ensure that the "mqtt-subscriber-redis" service is started before this one
     ports:
-      - "8000:8000"
+      - "8000:8000"  # Map port 8000 on the host to port 8000 in the container
